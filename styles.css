@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #233760;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+  }
+  
+  .game-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px; /* Limit the width for a cleaner layout */
+  }
+  
+  #buttons-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for 16 buttons */
+    grid-gap: 10px; /* Increase grid gap to make buttons more spaced */
+    margin-top: 70px;
+    margin-left: 10%;
+    width: 100%; /* Full width, but constrained by max width of the game container */
+    max-width: 500px;
+  }
+  
+  .button {
+    width: 70px;  /* Smaller buttons for a more compact layout */
+    height: 70px;
+    border-radius: 10px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.3s ease; /* Added smooth transition */
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  #green { background-color: green; }
+  #red { background-color: red; }
+  #yellow { background-color: yellow; }
+  #blue { background-color: blue; }
+  #purple { background-color: purple; }
+  #orange { background-color: orange; }
+  #cyan { background-color: cyan; }
+  #pink { background-color: pink; }
+  #brown { background-color: brown; }
+  #gray { background-color: gray; }
+  #lightgreen { background-color: lightgreen; }
+  #lightred { background-color: lightcoral; }
+  #lightyellow { background-color: lightyellow; }
+  #lightblue { background-color: lightblue; }
+  #lime { background-color: lime; }
+  #indigo { background-color: cadetblue; }
+  
+  .button:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Button grows a bit on hover */
+  }
+  
+  #status {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  #score {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  input {
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #61dafb;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #21a1f1;
+  }
+  
+  button:active {
+    background-color: #1e90ff;
+  }
+
+  /* Added background color changes for success and failure */
+body.success {
+    background-color: #4CAF50; /* Green for success */
+    transition: background-color 0.5s ease;
+  }
+  
+  body.failure {
+    background-color: #FF5733; /* Red for failure */
+    transition: background-color 0.5s ease;
+  }
+  
+  .button.flash {
+    animation: flash 0.3s ease-in-out infinite;
+  }
+  
+  @keyframes flash {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
+  
+  #status {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  #score {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  /* Fade-in and fade-out effect for the status */
+  @keyframes fadeStatus {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  
