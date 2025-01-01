@@ -20,7 +20,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 columns for 16 buttons */
     grid-gap: 10px; /* Increase grid gap to make buttons more spaced */
-    margin-top: 70px;
+    margin-top: 20px;
     margin-left: 10%;
     width: 100%; /* Full width, but constrained by max width of the game container */
     max-width: 500px;
@@ -92,7 +92,7 @@ body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 1px;
     font-weight: bold;
   }
   
