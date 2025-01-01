@@ -104,53 +104,51 @@ body {
     background-color: #1e90ff;
   }
 
-  /* Added background color changes for success and failure */
-body.success {
-    background-color: #4CAF50; /* Green for success */
-    transition: background-color 0.5s ease;
-  }
-  
-  body.failure {
-    background-color: #FF5733; /* Red for failure */
-    transition: background-color 0.5s ease;
-  }
-  
-  .button.flash {
-    animation: flash 0.3s ease-in-out infinite;
-  }
-  
-  @keyframes flash {
-    0% {
-      opacity: 0.7;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0.7;
-    }
-  }
-  
-  #status {
-    margin-top: 20px;
-    font-size: 20px;
+  /* Toast container for success and failure messages */
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
     font-weight: bold;
-    transition: opacity 0.5s ease-in-out;
-  }
-  
-  #score {
-    margin-top: 10px;
     font-size: 18px;
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction with toast */
+    transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
+    z-index: 1000; /* Ensure it's above all other content */
   }
   
-  /* Fade-in and fade-out effect for the status */
-  @keyframes fadeStatus {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  .toast.success {
+    background-color: #4CAF50; /* Green for success */
   }
   
+  .toast.failure {
+    background-color: #FF5733; /* Red for failure */
+  }
+  
+  /* Toast show and hide transition */
+  .toast.show {
+    opacity: 1;
+    top: 40px; /* Show slightly below the top of the page */
+  }
+  
+  .toast.hide {
+    opacity: 0;
+    top: -50px; /* Move toast off-screen when hidden */
+  }
+  /* Glow effect for buttons during sequence flashing */
+.button.glow {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.7);
+    transform: scale(1.1); /* Slightly enlarge the button for effect */
+    opacity: 1;
+  }
+  
+  /* Flash effect */
+  .button.flash {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
   

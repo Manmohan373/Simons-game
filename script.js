@@ -8,6 +8,11 @@ let scoreDisplay = document.getElementById('score');
 let startBtn = document.getElementById('startBtn');
 let playerNameInput = document.getElementById('playerName');
 
+// Toast element for success and failure messages
+let toast = document.createElement('div');
+toast.classList.add('toast');
+document.body.appendChild(toast);
+
 // Start game
 startBtn.addEventListener('click', () => {
   if (!gameStarted && playerNameInput.value !== "") {
@@ -51,7 +56,7 @@ function resetGame() {
   status.innerText = `${playerNameInput.value}'s Game: Level ${level}`;
   scoreDisplay.innerText = `Score: ${level}`;
   generateSequence();
-  document.body.classList.remove('success', 'failure');  // Reset any background color change
+  buttons.forEach(button => button.classList.remove('glow')); // Remove glow from buttons
 }
 
 // Generate the sequence
@@ -60,6 +65,12 @@ function generateSequence() {
   level++;
   status.innerText = `${playerNameInput.value}'s Game: Level ${level}`;
   scoreDisplay.innerText = `Score: ${level}`;
+  
+  // Show level-up toast (after level-up, not at the start)
+  if (level > 1) {
+    showToast("Level Up!", "success");
+  }
+
   let randomButton = getRandomButton();
   sequence.push(randomButton);
   flashSequence();
@@ -75,10 +86,8 @@ function flashSequence() {
     if (i >= sequence.length) {
       clearInterval(interval);
       setTimeout(() => {
-        // Add transition effect after each successful level
-        setTimeout(() => {
-          buttonResetAnimation();
-        }, 100);
+        // Reset button animation after flashing
+        buttonResetAnimation();
       }, 500);
     }
   }, 1000);
@@ -93,10 +102,15 @@ function playSound(buttonId) {
 // Button animation with flash effect
 function buttonAnimation(buttonId) {
   let button = document.getElementById(buttonId);
-  button.classList.add('flash');
+  button.classList.add('flash', 'glow'); // Add both classes for flash and glow effect
+  
   setTimeout(() => {
-    button.classList.remove('flash');
+    button.classList.remove('flash'); // Remove flash class
   }, 300);
+
+  setTimeout(() => {
+    button.classList.remove('glow'); // Remove glow effect after flash
+  }, 500);  // Same timing as flash duration
 }
 
 // Reset button animation after flashing sequence
@@ -104,6 +118,7 @@ function buttonResetAnimation() {
   buttons.forEach(button => {
     button.style.opacity = 0.7;
     button.style.transform = "scale(1)";
+    button.classList.remove('glow'); // Reset glow class
   });
 }
 
@@ -124,21 +139,21 @@ function checkPlayerSequence() {
 // Game over function
 function gameOver() {
   gameStarted = false;
-  document.body.classList.add('failure'); // Apply failure background color
+  showToast(`Game Over! Final Level: ${level}`, "failure");
   status.innerText = `Game Over! ${playerNameInput.value}'s Final Level: ${level}`;
   scoreDisplay.innerText = `Final Score: ${level}`;
   startBtn.innerText = "Restart Game";
-  setTimeout(() => {
-    document.body.classList.remove('failure');
-  }, 500); // Reset the background color after a short time
 }
 
-// Successful Level
-function levelSuccess() {
-  document.body.classList.add('success'); // Apply success background color
+// Show toast with success or failure message
+function showToast(message, type) {
+  toast.innerText = message;
+  toast.classList.remove('hide');
+  toast.classList.add('show', type);
   setTimeout(() => {
-    document.body.classList.remove('success');
-  }, 500); // Reset after some time
+    toast.classList.remove('show');
+    toast.classList.add('hide');
+  }, 2000); // Toast will disappear after 2 seconds
 }
 
 // Get a random button from the list of 16 buttons
