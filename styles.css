@@ -68,6 +68,13 @@ body {
     margin-top: 10px;
     font-size: 18px;
   }
+
+  #footer {
+    position: absolute;
+    bottom: 10px;
+    font-size: 14px;
+    color: blanchedalmond;
+  }
   
   input {
     padding: 10px;
